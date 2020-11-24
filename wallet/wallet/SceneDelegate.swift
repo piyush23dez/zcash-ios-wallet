@@ -76,13 +76,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func firstView() -> AnyView {
         _zECCWalletNavigationBarLookTweaks()
+        
         let walletEnvironment = ZECCWalletEnvironment.shared
             
             switch walletEnvironment.state {
             case .initalized,
                  .syncing,
                  .synced:
-    
+                try! walletEnvironment.initialize()
                 return AnyView(
                     Home(
                         amount: walletEnvironment.initializer.getBalance().asHumanReadableZecBalance(),

@@ -44,14 +44,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         
-        let environment = ZECCWalletEnvironment.shared
-        switch environment.state {
-        case .initalized,
-             .synced:
-            try! environment.initialize()
-        default:
-            break
-        }
+//        let environment = ZECCWalletEnvironment.shared
+//        switch environment.state {
+//        case .initalized,
+//             .synced:
+//            try! environment.initialize()
+//        default:
+//            break
+//        }
         
         return true
     }

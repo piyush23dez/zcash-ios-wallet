@@ -93,6 +93,7 @@ final class ZECCWalletEnvironment: ObservableObject {
             try SeedManager.default.importBirthday(birthday.height)
             try SeedManager.default.importPhrase(bip39: randomPhrase)
             try self.initialize()
+            self.synchronizer.start()
         
         } catch {
             throw WalletError.createFailed(underlying: error)
@@ -104,7 +105,6 @@ final class ZECCWalletEnvironment: ObservableObject {
         let seedBytes = try MnemonicSeedProvider.default.toSeed(mnemonic: seedPhrase)
         let viewingKeys = try DerivationTool.default.deriveViewingKeys(seed: seedBytes, numberOfAccounts: 1)
         try self.initializer.initialize(viewingKeys: viewingKeys, walletBirthday: try SeedManager.default.exportBirthday())
-        self.synchronizer.start()
     }
     
     /**

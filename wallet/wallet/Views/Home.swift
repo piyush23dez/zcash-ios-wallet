@@ -378,6 +378,7 @@ struct Home: View {
         .navigationBarHidden(true)
             
         .onAppear {
+            appEnvironment.synchronizer.start()
             tracker.track(.screen(screen: .home), properties: [:])
         }
     }

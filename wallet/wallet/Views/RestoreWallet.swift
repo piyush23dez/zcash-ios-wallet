@@ -116,6 +116,7 @@ struct RestoreWallet: View {
                         try self.importSeed()
                         try self.importBirthday()
                         try self.appEnvironment.initialize()
+                        self.appEnvironment.synchronizer.start()
                     } catch {
                         logger.error("\(error)")
                         tracker.track(.error(severity: .critical), properties: [
